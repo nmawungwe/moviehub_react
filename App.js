@@ -1,44 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import {ActivityIndicator, FlatList, StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import HomeScreen from './screens/HomeScreen'
+import MovieListScreen from './screens/MovieListScreen'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
-export default class App extends Component {
+const Stack = createStackNavigator();
 
-  state = {
-            title: '',
-  }
+function MyStack() {
+  return(
+    <Stack.Navigator
+      initialRouteName="Home"
+    >
+      <Stack.Screen 
+        name="Home" 
+        component={HomeScreen} 
+        />
+      <Stack.Screen 
+        name="Movies" 
+        component={MovieListScreen}
+        />
+    </Stack.Navigator>
+  )
+}
 
-  titleHandler = title => {
-    this.setState({title})
-  }
+export default function App() {
 
-  searchMovieFromApi = () => {
-    const title = this.state.title
-
-    fetch(`http://www.omdbapi.com/?s=${title}&apikey=62927f24`).then(response => response.json()).then((json)=>{
-      console.log(json)
-    }).catch((error) => console.error(error))
-
-    
-    
-  }
-
-  render(){
     return (
-      <View style={styles.container}>
-        <Text>Movie Hub</Text>
-        <TextInput
-          onChangeText={this.titleHandler}
-          placeholder="Enter movie title"
-          value={this.state.title}
-        />
-        <Button 
-          title="Search"  
-          onPress={this.searchMovieFromApi}        
-        />
-      </View>
+            <NavigationContainer>
+              <MyStack />
+            </NavigationContainer>
         )
-      } 
     }
 
 const styles = StyleSheet.create({
