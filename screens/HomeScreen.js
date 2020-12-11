@@ -12,16 +12,18 @@ export default class HomeScreen extends Component {
     this.setState({title})
   }
 
-  searchMovieFromApi = () => {
-    const title = this.state.title
+  
 
-    fetch(`http://www.omdbapi.com/?s=${title}&apikey=62927f24`).then(response => response.json()).then((json)=>{
-      console.log(json)
-    }).catch((error) => console.error(error))
+//   searchMovieFromApi = () => {
+//     const title = this.state.title
 
-    // this.props.navigation.navigate("Movies")
+//     fetch(`http://www.omdbapi.com/?s=${title}&apikey=62927f24`).then(response => response.json()).then((json)=>{
+//       console.log(json)
+//     }).catch((error) => console.error(error))
+
+//     // this.props.navigation.navigate("Movies")
     
-  }
+//   }
 
   render(){
     return (
@@ -39,11 +41,11 @@ export default class HomeScreen extends Component {
              
             const title = this.state.title
 
-            const movies = fetch(`http://www.omdbapi.com/?s=${title}&apikey=62927f24`).then(response => response.json()).then((json)=>{
-                // console.log(json)
-                }).catch((error) => console.error(error))
+            // const movies = fetch(`http://www.omdbapi.com/?s=${title}&apikey=62927f24`).then(response => response.json()).then((json)=>{
+            //     // console.log(json)
+            //     }).catch((error) => console.error(error))
 
-                this.props.navigation.navigate('Movies', movies)
+                this.props.navigation.navigate('Movies', {title:title})
 
           }}  
         />
