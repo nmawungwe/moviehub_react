@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {ActivityIndicator, FlatList, StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import HomeScreen from './screens/HomeScreen'
 import MovieListScreen from './screens/MovieListScreen'
+import MovieScreen from './screens/MovieScreen'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
@@ -21,6 +22,10 @@ function MyStack() {
         name="Movies" 
         component={MovieListScreen}
         />
+      <Stack.Screen
+        name="Movie"
+        component={MovieScreen}
+      />
     </Stack.Navigator>
   )
 }
