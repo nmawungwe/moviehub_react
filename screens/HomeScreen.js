@@ -28,13 +28,15 @@ export default class HomeScreen extends Component {
   render(){
     return (
       <View style={styles.container}>
-        <Text>Movie Hub</Text>
+        <Text style={styles.titleText}>Movie Hub</Text>
         <TextInput
+          style={styles.inputText}
           onChangeText={this.titleHandler}
           placeholder="Enter movie title"
           value={this.state.title}
         />
         <Button 
+          color='#4d4dff'
           title="Search"  
         //   onPress={this.searchMovieFromApi}      
           onPress={() => {
@@ -62,4 +64,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  titleText: {
+    fontSize: 30,
+    fontWeight: "bold",
+    color:	'#4d4dff'
+  },
+  inputText: {
+    height: 40,
+    width: 240,
+    borderColor: 'gray',
+    borderWidth: 1,
+    padding: 10,
+    marginTop: 10,
+    marginBottom: 10,
+  },
+
 });

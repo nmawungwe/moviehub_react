@@ -7,7 +7,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler'
 export default MovieListScreen = ({route, navigation}) => {
 
     const [isLoading, setLoading] = useState(true);
-    const [data, setData] = useState([]);
+    const [data, setData, selectedId, setSelectedId] = useState([]);
 
     const {title} = route.params
 
@@ -29,14 +29,21 @@ export default MovieListScreen = ({route, navigation}) => {
                     // onSelectMovie ={(item) => {
                     //     this.props.navigation.navigate('Movie')
                     // }}
-                    renderItem={({item}) => (
-                    <TouchableOpacity style={styles.row} onPress={()=>{
-                        navigation.navigate('Movie', { title: item.Title,
-                                                       year: item.Year})
-                    }}>
-                        <Text>{item.Title}</Text>
-                    </TouchableOpacity>
-                    )}
+                    extraData={selectedId}
+                    renderItem={({item}) => {
+                     
+                    const backgroundColor = item.id === selectedId ? "#4d4dff": "#fff"
+                        
+                    return (    
+                        <TouchableOpacity style={[styles.item, backgroundColor]} onPress={()=>{
+                            // setSelectedId(item.id)
+                            navigation.navigate('Movie', {  title: item.Title,
+                                                            year: item.Year,
+                                                            poster: item.Poster})
+                        }}>
+                            <Text>{item.Title}</Text>
+                        </TouchableOpacity>
+                    )}}
                 />
             )}
         </View>
@@ -54,5 +61,11 @@ const styles = StyleSheet.create({
     },
     row: {
             padding: 20
+    },
+    item: {
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+        borderColor: 'gray',
     }
 })
