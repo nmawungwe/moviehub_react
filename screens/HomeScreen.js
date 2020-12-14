@@ -12,18 +12,6 @@ export default class HomeScreen extends Component {
     this.setState({title})
   }
 
-  
-
-//   searchMovieFromApi = () => {
-//     const title = this.state.title
-
-//     fetch(`http://www.omdbapi.com/?s=${title}&apikey=62927f24`).then(response => response.json()).then((json)=>{
-//       console.log(json)
-//     }).catch((error) => console.error(error))
-
-//     // this.props.navigation.navigate("Movies")
-    
-//   }
 
   render(){
     return (
@@ -38,17 +26,9 @@ export default class HomeScreen extends Component {
         <Button 
           color='#4d4dff'
           title="Search"  
-        //   onPress={this.searchMovieFromApi}      
           onPress={() => {
-             
-            const title = this.state.title
-
-            // const movies = fetch(`http://www.omdbapi.com/?s=${title}&apikey=62927f24`).then(response => response.json()).then((json)=>{
-            //     // console.log(json)
-            //     }).catch((error) => console.error(error))
-
-                this.props.navigation.navigate('Movies', {title:title})
-
+          const title = this.state.title
+          this.props.navigation.navigate('Movies', {title:title})
           }}  
         />
       </View>

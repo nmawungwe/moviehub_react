@@ -7,7 +7,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler'
 export default MovieListScreen = ({route, navigation}) => {
 
     const [isLoading, setLoading] = useState(true);
-    const [data, setData, selectedId, setSelectedId] = useState([]);
+    const [data, setData] = useState([]);
 
     const {title} = route.params
 
@@ -26,20 +26,15 @@ export default MovieListScreen = ({route, navigation}) => {
                 <FlatList
                     data={data}
                     keyExtractor={item => item.imdbID}
-                    // onSelectMovie ={(item) => {
-                    //     this.props.navigation.navigate('Movie')
-                    // }}
-                    extraData={selectedId}
-                    renderItem={({item}) => {
-                     
-                    const backgroundColor = item.id === selectedId ? "#4d4dff": "#fff"
-                        
+                    renderItem={({item}) => {         
                     return (    
-                        <TouchableOpacity style={[styles.item, backgroundColor]} onPress={()=>{
+                        <TouchableOpacity style={styles.item} onPress={()=>{
                             // setSelectedId(item.id)
-                            navigation.navigate('Movie', {  title: item.Title,
+                            navigation.navigate('Movie', {  
+                                                            title: item.Title,
                                                             year: item.Year,
-                                                            poster: item.Poster})
+                                                            poster: item.Poster
+                                                        })
                         }}>
                             <Text>{item.Title}</Text>
                         </TouchableOpacity>

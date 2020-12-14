@@ -9,23 +9,25 @@ const OpenURLButton = ({url, children}) => {
 
         if (supported){
             // opening the link with some app, if the URL scheme is "http" the web link should be opened or some browser in the mobile
-
             await Linking.openURL(url);
         } else {
             Alert.alert(`Don't know how to open this URL : ${url}`);
         } 
     }, [url]);
 
-    return <Button title={children} onPress={handlePress}/> 
+    return <Button 
+                    title={children} 
+                    onPress={handlePress}
+            /> 
 }
 
 export default function MovieScreen({route, navigation}) {
     const { title, year, poster } = route.params;
 
-    return(
+    return (
             <View style={styles.container}>
-                <Text>Title: {JSON.stringify(title)}</Text>
-                <Text>Year: {JSON.stringify(year)}</Text>
+                <Text>Title: {title}</Text>
+                <Text>Year: {year}</Text>
                 <OpenURLButton url={poster}>Poster</OpenURLButton>
             </View>
     )
